@@ -8,6 +8,14 @@ namespace Self_driving_rides
 {
     public static class Tools
     {
+        static public void PrintList<T>(this List<T> l, System.Func<T, string> f)
+        {
+            string tmp = "";
+            foreach (var o in l)
+                tmp += f(o) + " ";
+            Console.WriteLine(tmp);
+        }
+
         public static void DisplayStructList<T>(List<T> list)
         {
             foreach (T item in list)

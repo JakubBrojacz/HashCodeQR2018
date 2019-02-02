@@ -10,26 +10,27 @@ namespace Self_driving_rides
     {
         static int Main()
         {
+            Func<string,int> Solution = new Func<string, int>(Backpropagation.Task);
             int points = 0;
             string path = "a_example.in";
             Console.WriteLine(path);
-            points+=Task(path);
+            points+= Solution(path);
             Console.WriteLine("________");
             path = "b_should_be_easy.in";
             Console.WriteLine(path);
-            points += Task(path);
+            points += Solution(path);
             Console.WriteLine("________");
             path = "c_no_hurry.in";
             Console.WriteLine(path);
-            points += Task(path);
+            points += Solution(path);
             Console.WriteLine("________");
             path = "d_metropolis.in";
             Console.WriteLine(path);
-            points += Task(path);
+            points += Solution(path);
             Console.WriteLine("________");
             path = "e_high_bonus.in";
             Console.WriteLine(path);
-            points += Task(path);
+            points += Solution(path);
             Console.WriteLine("________");
             Console.WriteLine("Points " + points);
             Console.ReadKey();

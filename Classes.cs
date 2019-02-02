@@ -13,7 +13,7 @@ namespace Self_driving_rides
         public int f;       //latest finish
         public int t;       //duration
         public int i;       //no of ride
-        public Car car;     //assigned car
+        //public Car car;     //assigned car
     }
     public class Board
     {
