@@ -29,7 +29,7 @@ namespace Self_driving_rides
         }
         public static T Max2<T>(T v1, T v2) where T: IComparable
         {
-            if (v1.CompareTo(v2) <= 0)
+            if (v1.CompareTo(v2) >= 0)
                 return v1;
             return v2;
         }
