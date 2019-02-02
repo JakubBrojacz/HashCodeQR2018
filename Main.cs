@@ -131,7 +131,7 @@ namespace Self_driving_rides
             //else if (debug < ride.s)
             //    Console.WriteLine($"Ride {ride.i}  obsłużony, musiał czekać {ride.s - debug}");
 
-            if (bestCar.WhenCanYouGetThere(ride.a, ride.b) + ride.t > ride.f)
+            if (Tools.Max2(bestCar.WhenCanYouGetThere(ride.a, ride.b), ride.s) + ride.t > ride.f)
                 return null;
             return bestCar;
         }
