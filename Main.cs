@@ -93,7 +93,7 @@ namespace Self_driving_rides
                 }//
 
                 chosen.schedule.Add(ride.i);
-                chosen.t = Tools.Max2(chosen.WhenCanYouGetThere(ride.x, ride.y), ride.f) + ride.t;
+                chosen.t = Tools.Max2(chosen.WhenCanYouGetThere(ride.x, ride.y), ride.s) + ride.t;
                 chosen.x = ride.x;
                 chosen.y = ride.y;
             }
