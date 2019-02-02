@@ -19,30 +19,32 @@ namespace Self_driving_rides
     {
         static int Main()
         {
+            int points = 0;
             string path = "a_example.in";
             Console.WriteLine(path);
-            Task(path);
+            points+=Task(path);
             Console.WriteLine("________");
             path = "b_should_be_easy.in";
             Console.WriteLine(path);
-            Task(path);
+            points += Task(path);
             Console.WriteLine("________");
             path = "c_no_hurry.in";
             Console.WriteLine(path);
-            Task(path);
+            points += Task(path);
             Console.WriteLine("________");
             path = "d_metropolis.in";
             Console.WriteLine(path);
-            Task(path);
+            points += Task(path);
             Console.WriteLine("________");
             path = "e_high_bonus.in";
             Console.WriteLine(path);
-            Task(path);
+            points += Task(path);
             Console.WriteLine("________");
+            Console.WriteLine("Points " + points);
             Console.ReadKey();
             return 0;
         }
-        static void Task(string path)
+        static int Task(string path)
         {
             List<Ride> rides;
             Board board;
@@ -103,6 +105,7 @@ namespace Self_driving_rides
             Console.WriteLine("completedRides: {0}", completedRides);//
             Console.WriteLine("ridesWithBonuses: {0}", ridesWithBonuses);//
             Console.WriteLine("waitedCycles: {0}", waitedCycles);//
+            return points;
         }
         static Car FindBestCar(Ride ride, List<Car> cars)
         {
