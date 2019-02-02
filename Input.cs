@@ -7,14 +7,6 @@ using System.Threading.Tasks;
 
 namespace Self_driving_rides
 {
-    public class Ride
-    {
-        public int a, b, x, y, s, f, t, i;
-    }
-    public class Board
-    {
-        public int R, C, F, N, B, T;
-    }
     public static class Input
     {
         public static void ReadData(string path, out List<Ride> rides, out Board board)

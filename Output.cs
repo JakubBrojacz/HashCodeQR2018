@@ -19,7 +19,7 @@ namespace Self_driving_rides
                     file.Write(v1.schedule.Count + " ");
                     foreach(var v2 in v1.schedule)
                     {
-                        file.Write(v2 + " ");
+                        file.Write(v2.i + " ");
                     }
                     file.WriteLine("\n");
                 }

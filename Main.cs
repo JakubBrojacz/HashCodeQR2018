@@ -6,15 +6,6 @@ using System.Threading.Tasks;
 
 namespace Self_driving_rides
 {
-    public class Car
-    {
-        public int i, x, y, t; //t - moment, w którym będzie wolny
-        public List<int> schedule = new List<int>();
-        public int WhenCanYouGetThere(int a, int b)
-        {
-            return Tools.InfiniteMetric(a, b, x, y) + t;
-        }
-    }
     static class Program
     {
         static int Main()
@@ -94,7 +85,7 @@ namespace Self_driving_rides
                     points += ride.t;//
                 }//
 
-                chosen.schedule.Add(ride.i);
+                chosen.schedule.Add(ride);
                 chosen.t = Tools.Max2(chosen.WhenCanYouGetThere(ride.a, ride.b), ride.s) + ride.t;
                 chosen.x = ride.x;
                 chosen.y = ride.y;
