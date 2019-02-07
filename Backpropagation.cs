@@ -57,9 +57,10 @@ namespace Self_driving_rides
             int past_t=0;
             int past_x=0;
             int past_y=0;
+            int temporary_lost = 0;
             if(dismiss)
             {
-                already_lost += rides[actual_ride].t + board.B;
+                temporary_lost += rides[actual_ride].t + board.B;
                 //rides[actual_ride].car = null;
             }
             else
@@ -75,7 +76,7 @@ namespace Self_driving_rides
                 if (c.WhenCanYouGetThere(r.a, r.b) <= r.s)
                     points_for_ride += board.B;
                 else
-                    already_lost += board.B;
+                    temporary_lost += board.B;
                 points_for_ride += r.t;
                 past_t = c.t;
                 past_x = c.x;
@@ -86,6 +87,7 @@ namespace Self_driving_rides
             }
 
             //check if it is even possible to improve max
+            already_lost += temporary_lost;
             if (cant_be_better - already_lost <= global_max)
                 goto Cleanup;
 
@@ -122,9 +124,10 @@ namespace Self_driving_rides
                     }
                 }
             }
-            
+
         Cleanup:
             //return to initial state 
+            already_lost -= temporary_lost;
             if (!dismiss)
             {
                 var c = cars[actual_car];
