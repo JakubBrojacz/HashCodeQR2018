@@ -31,7 +31,9 @@ namespace Self_driving_rides
             rides.Sort((x, y) => (x.s.CompareTo(y.s)));
 
             //rides.PrintList(r => r.i.ToString());
+            cant_be_better = rides.Sum(r => r.t + board.B);
             global_max = 0;
+            already_lost = 0;
             SolveRecurrent(board, rides.ToArray(), 0, rides.Count, cars.ToArray(), 0, cars.Count, false, 0);
             SolveRecurrent(board, rides.ToArray(), 0, rides.Count, cars.ToArray(), 0, cars.Count, true, 0);
             Console.WriteLine("points: {0}", global_max);//
@@ -39,6 +41,8 @@ namespace Self_driving_rides
             return global_max;
         }
 
+        static int already_lost;
+        static int cant_be_better;
         static int global_max;
         static List<int> assigment;
 
@@ -55,6 +59,7 @@ namespace Self_driving_rides
             int past_y=0;
             if(dismiss)
             {
+                already_lost += rides[actual_ride].t + board.B;
                 //rides[actual_ride].car = null;
             }
             else
@@ -69,6 +74,8 @@ namespace Self_driving_rides
                 c.schedule.Add(r);
                 if (c.WhenCanYouGetThere(r.a, r.b) <= r.s)
                     points_for_ride += board.B;
+                else
+                    already_lost += board.B;
                 points_for_ride += r.t;
                 past_t = c.t;
                 past_x = c.x;
@@ -77,6 +84,10 @@ namespace Self_driving_rides
                 c.x = r.x;
                 c.y = r.y;
             }
+
+            //check if it is even possible to improve max
+            if (cant_be_better - already_lost <= global_max)
+                goto Cleanup;
 
             if(actual_ride<max_ride-1)
             {
@@ -97,7 +108,7 @@ namespace Self_driving_rides
             }
             else
             {
-                Console.WriteLine($"Score: {actual_score}");
+                //Console.WriteLine($"Score: {actual_score}");
                 if (actual_score + points_for_ride > global_max)
                 {
                     global_max = actual_score + points_for_ride;
@@ -112,7 +123,7 @@ namespace Self_driving_rides
                 }
             }
             
-
+        Cleanup:
             //return to initial state 
             if (!dismiss)
             {
